@@ -1,7 +1,8 @@
 'user strict';
-var orderRepo = require('../lib/orderRepo'),
-    uuid = require('node-uuid'),
-    helper = require('../lib/helper');
+var orderRepo = require('./lib/orderRepo'),
+    shipmentRepo = require('./lib/shipmentRepo'),
+    helper = require('./lib/helper'),
+    uuid = require('node-uuid');
 
 module.exports.createOrder = (event, context, callback) => {
     var data = {
@@ -40,7 +41,7 @@ module.exports.addProductOrder = (event, context, callback) => {
     });
 };
 
-module.exports.updateorder  = (event, context, callback) => {
+module.exports.updateOrder  = (event, context, callback) => {
     const data = JSON.parse(event.body);
     data.id = event.pathParameters.id;
     data.updated = new Date().toISOString();
