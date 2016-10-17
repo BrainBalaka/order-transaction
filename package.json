@@ -1,0 +1,26 @@
+{
+  "name": "order-transaction",
+  "version": "0.0.1",
+  "description": "Order Transaction Service",
+  "main": "handler.js",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "npm run test -- --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BrainBalaka/order-transaction.git"
+  },
+  "keywords": [
+    "serverless"
+  ],
+  "author": "Brain Balaka",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BrainBalaka/order-transaction/issues"
+  },
+  "homepage": "https://github.com/BrainBalaka/order-transaction#readme",
+  "devDependencies": {
+    "jest": "^16.0.1"
+  }
+}
