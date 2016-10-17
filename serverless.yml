@@ -25,23 +25,68 @@ provider:
 #functions:
 functions:
   createOrder:
-    handler: handlers/orders.createOrder
+    handler: handler.createOrder
     events:
         - http:
             path: orders
             method: POST
+            cors: true
   getOrder:
-    handler: handlers/orders.getOrder
+    handler: handler.getOrder
     events:
         - http:
             path: orders/{id}
             method: GET
             cors: true
-	    request:
-                parameters:
-                    paths:
-                    id: true
-
+  addProductOrder:
+    handler: handler.addProductOrder
+    events:
+        - http:
+            path: orders/{id}/products
+            method: POST
+            cors: true
+  updateOrder:
+    handler: handler.updateOrder
+    events:
+        - http:
+            path: orders/{id}
+            method: PUT
+            cors: true
+  submitOrder:
+    handler: handler.submitOrder
+    events:
+        - http:
+            path: submit-order/{id}
+            method: PUT
+            cors: true
+  getSubmitedOrder:
+    handler: handler.getSubmitedOrder
+    events:
+        - http:
+            path: submitted-orders
+            method: GET
+            cors: true
+  createShipment:
+    handler: handler.createShipment
+    events:
+        - http:
+            path: orders/{id}/shipments
+            method: POST
+            cors: true
+  updateShipment:
+    handler: handler.shipments.updateShipment
+    events:
+        - http:
+            path: shipments/{shipmentId}
+            method: PUT
+            cors: true
+  getShipment:
+    handler: handler.shipments.getShipment
+    events:
+        - http:
+            path: shipments/{shipmentId}
+            method: GET
+            cors: true
 
 #resources configuration
 resources:

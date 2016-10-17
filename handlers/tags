@@ -1,3 +1,0 @@
-!_TAG_FILE_SORTED	2	/0=unsorted, 1=sorted, 2=foldcase/
-orderRepo	/Users/silvyamelia/Documents/workshop/order-transaction/handlers/orders.js	/^var orderRepo = require('..\/lib\/orderRepo'),$/;"	v	language:JavaScript
-var.data.id	/Users/silvyamelia/Documents/workshop/order-transaction/handlers/orders.js	/^    var data = {$/;"	p	language:JavaScript
