@@ -13,9 +13,6 @@ The order transaction service is developed using serverless framework (https://g
 
 As the serverless framework currently does not support local debugging out of the box, this service will directly be deployed to AWS. However, we could modify the stage option when we run the deploy command.
 
-# Assumption
-This service assumes
-
 # Features
 The service features follows this scenario:
 
@@ -29,10 +26,42 @@ The service features follows this scenario:
   * Coupon can be applied to order before submission
 4. Order transaction process flow and verification; single transaction has the following steps:
   * Customer can add product to an order
+    api address: POST https://yx5m5q8z59.execute-api.ap-southeast-1.amazonaws.com/dev/orders
+    request body: {}
+    
+    api Address: POST https://yx5m5q8z59.execute-api.ap-southeast-1.amazonaws.com/dev/orders/62a967f0-9451-11e6-b454-952db40271dc/products
+    request body:
+    `{
+     "products": [ 
+      {"productId": "xxx", "quantity": 2}
+      ]
+    }`
+    
   * Customer can apply one coupon to order, only one coupon can be applied to order
+    api Address: PUT https://yx5m5q8z59.execute-api.ap-southeast-1.amazonaws.com/dev/orders/62a967f0-9451-11e6-b454-952db40271dc
+    request body:
+    `{
+     "couponId": "xxx"
+    }`
+  
   * Customer can submit an order and the order is finalized
+    api Address: PUT https://yx5m5q8z59.execute-api.ap-southeast-1.amazonaws.com/dev/submit-orders/62a967f0-9451-11e6-b454-952db40271dc
+    request body:
+    `{}`
+    
   * Customer can only pay via bank transfer
-  * When placing order the following data is required: name, phone number, email, address
+   api Address: PUT https://yx5m5q8z59.execute-api.ap-southeast-1.amazonaws.com/dev/orders/62a967f0-9451-11e6-b454-952db40271dc
+    request body:
+    `{
+     "paymentNo": "xxx"
+    }`
+  
+  When placing order the following data is required: name, phone number, email, address
+  api Address: PUT https://yx5m5q8z59.execute-api.ap-southeast-1.amazonaws.com/dev/orders/62a967f0-9451-11e6-b454-952db40271dc
+    request body:
+    `{
+     "name": "xxx", "phoneNumber: "xxx", "emai": "xxx", "address": "xxx" 
+    }`
   * When an order is submitted, the quantity for ordered product will be reduced based on the quantity.
   * When an order is submitted, the quantity of the coupon will be reduced based on the applied coupon
   * An order is successfully submitted if fulfills all of the following condition:
@@ -40,7 +69,11 @@ The service features follows this scenario:
    * All ordered products is available.
    * After an order is submitted, customer will be required to submit payment proof
   * After an order is submitted, the order is accessible to admin and ready to be processed
+  api Address: GET https://yx5m5q8z59.execute-api.ap-southeast-1.amazonaws.com/dev/submitted-orders
+  
   * Admin can view order detail
+  API Address: GET https://yx5m5q8z59.execute-api.ap-southeast-1.amazonaws.com/dev/submitted-orders
+  
   * Admin can verify the validity of order data: customer name, phone, email, address, payment proof
    * Given an order is valid, then Admin will prepare the ordered items for shipment
    * Given and order is invalid, then Admin can cancel the order
